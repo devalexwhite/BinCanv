@@ -27,6 +27,10 @@ export const createScene = (canvas, callback) => {
 			controls.autoRotate = true;
 			controls.enablePan = false;
 			controls.enableZoom = false;
+			controls.enableDamping = true;
+			controls.dampingFactor = 0.25;
+			controls.minPolarAngle = Math.PI / 2; // radians
+			controls.maxPolarAngle = Math.PI / 2; // radians
 
 			resize();
 			animate();
@@ -48,6 +52,8 @@ export const createScene = (canvas, callback) => {
 
 const animate = () => {
 	requestAnimationFrame(animate);
+	// controls.minPolarAngle = 0; // radians
+	// controls.maxPolarAngle = Math.PI; // radians
 	controls.update();
 	renderer.render(scene, camera);
 };
